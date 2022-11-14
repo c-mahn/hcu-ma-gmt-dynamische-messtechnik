@@ -1,4 +1,7 @@
-# Import von Bibliotheken
+# This script is a fork of analysis.py from the following repository:
+# https://github.com/c-mahn/test-sensor-data-analysis
+
+# Import of libraries
 # -----------------------------------------------------------------------------
 
 import matplotlib.pyplot as plt
@@ -11,7 +14,7 @@ from scipy.fft import fft, fftfreq
 from scipy import signal
 
 
-# Funktionen
+# Functions
 # -----------------------------------------------------------------------------
 
 def plot_werte(datenreihen, name=["Messwerte"]):
@@ -74,6 +77,16 @@ def low_pass_filter(datenreihe, filterungsgrad):
         ausgabe.append(temp)
     return(ausgabe)
 
+def high_pass_filter(datenreihe, datenreihe_low_pass):
+    """
+    Diese Funktion macht einen vereinfachten High-Pass-Filter, indem die
+    Low-Pass-Datenreihe von der Originaldatenreihe abgezogen wird.
+    """
+    ausgabe = []
+    for i, e in enumerate(datenreihe):
+        ausgabe.append(datenreihe[i] - datenreihe_low_pass[i])
+    return(ausgabe)
+
 
 def cross_correlation(x_red, y_red):
         Nx = len(x_red)
@@ -90,10 +103,10 @@ def cross_correlation(x_red, y_red):
         return lags, c
 
 
-# Klassen
+# Classes
 # -----------------------------------------------------------------------------
 
-# Beginn des Programms
+# Beginning of the main program
 # -----------------------------------------------------------------------------
 
 if(__name__ == '__main__'):
