@@ -81,24 +81,78 @@ if(__name__=='__main__'):
     netzkabel_neben_messleitung = {'zeit':timeserieses[15], 'kraft':timeserieses[16], 'dms_hinten':timeserieses[17], 'dms_vorn':timeserieses[18]}
     schwingung = {'zeit':timeserieses[19], 'kraft':timeserieses[20], 'dms_hinten':timeserieses[21], 'dms_vorn':timeserieses[22]}
 
-    # Plot the data
+    # Plotting of data
+    
+    # Dehnung im Verhältnis zur Kraft für Aramis Belasten Entlasten 1
     analysis.plot_xy([[1000*aramis_belasten_entlasten_1['kraft'], aramis_belasten_entlasten_1['dms_hinten']/1000],
                       [1000*aramis_belasten_entlasten_1['kraft'], aramis_belasten_entlasten_1['dms_vorn']/1000]],
                      ["Aramis Belasten Entlasten 1 (hinten)",
                       "Aramis Belasten Entlasten 1 (vorn)"],
                      "Kraft [N]", "Dehnung [mm]", "Aramis Belasten Entlasten 1")
+
+    # Torsion im Verhältnis zur Kraft für Aramis Belasten Entlasten 1
     analysis.plot_xy([[1000*aramis_belasten_entlasten_1['kraft'], (aramis_belasten_entlasten_1['dms_hinten']-aramis_belasten_entlasten_1['dms_vorn'])/1000]],
                      ["Aramis Belasten Entlasten 1 (hinten-vorn)"],
                      "Kraft [N]", "Dehnung [mm]", "Aramis Belasten Entlasten 1")
-    analysis.plot_xy([[1000*aramis_belasten_entlasten_2['kraft'], aramis_belasten_entlasten_2['dehnung']*100]],
+
+    # Dehnung im Verhältnis zur Kraft für Aramis Belasten Entlasten 2
+    analysis.plot_xy([[aramis_belasten_entlasten_2['kraft'], aramis_belasten_entlasten_2['dehnung']]],
                      ["Aramis Belasten Entlasten 2"],
                      "Kraft [N]", "Dehnung [%]", "Aramis Belasten Entlasten 2")
+
+    # Dehnung im Verhältnis zur Kraft für Belastung Entlastung 7000N
     analysis.plot_xy([[1000*belastung_entlastung_7000n['kraft'], belastung_entlastung_7000n['dms_hinten']/1000],
                       [1000*belastung_entlastung_7000n['kraft'], belastung_entlastung_7000n['dms_vorn']/1000]],
                      ["Belastung Entlastung 7000N (hinten)",
                       "Belastung Entlastung 7000N (vorn)"],
                      "Kraft [N]", "Dehnung [mm]", "Belastung Entlastung 7000N")
+
+    # Torsion im Verhältnis zur Kraft für Belastung Entlastung 7000N
     analysis.plot_xy([[1000*belastung_entlastung_7000n['kraft'], (belastung_entlastung_7000n['dms_hinten']-belastung_entlastung_7000n['dms_vorn'])/1000]],
                      ["Belastung Entlastung 7000N (hinten-vorn)"],
                      "Kraft [N]", "Dehnung [mm]", "Belastung Entlastung 7000N")
+    
+    # Dehnung im Verhältnis zur Kraft für Kabelkompensation Aus Magnet Heissluft
+    analysis.plot_xy([[kabelkompensation_aus_magnet_heissluft['zeit'], kabelkompensation_aus_magnet_heissluft['dms_hinten']/1000],
+                      [kabelkompensation_aus_magnet_heissluft['zeit'], kabelkompensation_aus_magnet_heissluft['dms_vorn']/1000]],
+                     ["Kabelkompensation Aus Magnet Heissluft (hinten)","Kabelkompensation Aus Magnet Heissluft (vorn)"],
+                     "Zeit [s]", "Dehnung [mm]", "Kabelkompensation Aus Magnet Heissluft")
+    
+    # Torsion im Verhältnis zur Kraft für Kabelkompensation Aus Magnet Heissluft
+    analysis.plot_xy([[kabelkompensation_aus_magnet_heissluft['zeit'], (kabelkompensation_aus_magnet_heissluft['dms_hinten']-kabelkompensation_aus_magnet_heissluft['dms_vorn'])/1000]],
+                     ["Kabelkompensation Aus Magnet Heissluft (hinten-vorn)"],
+                     "Zeit [s]", "Dehnung [mm]", "Kabelkompensation Aus Magnet Heissluft")
+    
+    # Dehnung im Verhältnis zur Kraft für Netzkabel Neben Messleitung
+    analysis.plot_xy([[netzkabel_neben_messleitung['zeit'], netzkabel_neben_messleitung['dms_hinten']/1000],
+                      [netzkabel_neben_messleitung['zeit'], netzkabel_neben_messleitung['dms_vorn']/1000]],
+                     ["Netzkabel Neben Messleitung (hinten)","Netzkabel Neben Messleitung (vorn)"],
+                     "Zeit [s]", "Dehnung [mm]", "Netzkabel Neben Messleitung")
+    
+    # Torsion im Verhältnis zur Kraft für Netzkabel Neben Messleitung
+    analysis.plot_xy([[netzkabel_neben_messleitung['zeit'], (netzkabel_neben_messleitung['dms_hinten']-netzkabel_neben_messleitung['dms_vorn'])/1000]],
+                     ["Netzkabel Neben Messleitung (hinten-vorn)"],
+                     "Zeit [s]", "Dehnung [mm]", "Netzkabel Neben Messleitung")
 
+    # Dehnung im Verhältnis zur Kraft für Schwingung
+    analysis.plot_xy([[schwingung['zeit'], schwingung['dms_hinten']/1000],
+                      [schwingung['zeit'], schwingung['dms_vorn']/1000]],
+                     ["Schwingung (hinten)","Schwingung (vorn)"],
+                     "Zeit [s]", "Dehnung [mm]", "Schwingung")
+    
+    # Torsion im Verhältnis zur Kraft für Schwingung
+    analysis.plot_xy([[schwingung['zeit'], (schwingung['dms_hinten']-schwingung['dms_vorn'])/1000]],
+                     ["Schwingung (hinten-vorn)"],
+                     "Zeit [s]", "Dehnung [mm]", "Schwingung")
+    
+    # Amplitude von Frequenzen bei Schwingung
+    fft_x, fft_y = analysis.fast_fourier_transform(schwingung['dms_vorn']-schwingung['dms_hinten'], 2400)
+    analysis.plot_xy([[fft_x, fft_y]],
+                     ["Schwingung (hinten-vorn)"],
+                     "Frequenz [Hz]", "Amplitude", "Schwingung")
+    
+    # Amplidute von Frequenzen bei Netzkabel Neben Messleitung
+    fft_x, fft_y = analysis.fast_fourier_transform(netzkabel_neben_messleitung['dms_vorn']-netzkabel_neben_messleitung['dms_hinten'], 2400)
+    analysis.plot_xy([[fft_x, fft_y]],
+                     ["Netzkabel Neben Messleitung (hinten-vorn)"],
+                     "Frequenz [Hz]", "Amplitude", "Netzkabel Neben Messleitung")

@@ -90,6 +90,17 @@ def high_pass_filter(datenreihe, datenreihe_low_pass):
         ausgabe.append(datenreihe[i] - datenreihe_low_pass[i])
     return(ausgabe)
 
+def fast_fourier_transform(datenreihe, sample_rate):
+    """
+    Diese Funktion macht eine Fast-Fourier-Transformation und gibt die Frequenz-
+    und Amplitudengraphen zurück.
+    """
+    N = len(datenreihe)
+    T = 1.0 / sample_rate
+    yf = fft(datenreihe)
+    xf = fftfreq(N, T)[:N//2]
+    return(xf, 2.0/N * np.abs(yf[0:N//2]))
+
 
 def cross_correlation(x_red, y_red):
         Nx = len(x_red)
