@@ -156,3 +156,14 @@ if(__name__=='__main__'):
     analysis.plot_xy([[fft_x, fft_y]],
                      ["Netzkabel Neben Messleitung (hinten-vorn)"],
                      "Frequenz [Hz]", "Amplitude", "Netzkabel Neben Messleitung")
+
+    # Low-Pass-Filter für Netzkabel Neben Messleitung
+    analysis.plot_xy([[netzkabel_neben_messleitung['zeit'], analysis.low_pass_filter(netzkabel_neben_messleitung['dms_vorn']-netzkabel_neben_messleitung['dms_hinten'], int(2400))]],
+                      ["Netzkabel Neben Messleitung (hinten-vorn)"],
+                      "Zeit [s]", "Dehnung [mm]", "Netzkabel Neben Messleitung")
+    
+    # Amplitude von Low-Pass-Filter für Netzkabel Neben Messleitung
+    fft_x, fft_y = analysis.fast_fourier_transform(analysis.low_pass_filter(netzkabel_neben_messleitung['dms_vorn']-netzkabel_neben_messleitung['dms_hinten'], int(2400)), 2400)
+    analysis.plot_xy([[fft_x, fft_y]],
+                     ["Netzkabel Neben Messleitung (hinten-vorn)"],
+                     "Frequenz [Hz]", "Amplitude", "Netzkabel Neben Messleitung")
