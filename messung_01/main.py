@@ -46,10 +46,13 @@ datasets = [["Aramis_Belasten_Entlasten_1.ASC", "\t"],
             ["Netzkabel neben Messleitung.ASC", "\t"],
             ["Schwingung.ASC", "\t"]]
 
-# This variable stores the converted datasets. It is populated by the script
-# "prepare_data.py". After conversion, the variable can be used for further
-# computation.
+# This variable stores the converted datasets. It is populated automatically
 datasets_converted = []
+for dataset in datasets:
+    datasets_converted.append(f'{dataset[0].split(".")[0]}.csv')
+
+# These are all measurements with their corresponding titles.
+measurements = []
 
 # Functions
 # -----------------------------------------------------------------------------

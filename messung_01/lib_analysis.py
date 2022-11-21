@@ -32,7 +32,7 @@ def plot_werte(datenreihen, name=["Messwerte"]):
     plt.show()
 
 
-def plot_xy(datenreihen, name=["Messwerte"]):
+def plot_xy(datenreihen, name=["Messwerte"], x="X", y="Y", title=None):
     """
     Diese Funktion nimmt je zwei Datenreihen und plottet diese in Abhängigkeit
     zueinander in ein Diagramm.
@@ -41,9 +41,12 @@ def plot_xy(datenreihen, name=["Messwerte"]):
         plt.plot(datenreihe[0], datenreihe[1])
     plt.legend(name)
     plt.grid()
-    plt.xlabel("Y")
-    plt.ylabel("X")
-    plt.title(name[0])
+    plt.xlabel(x)
+    plt.ylabel(y)
+    if(title != None):
+        plt.title(title)
+    else:
+        plt.title(name[0])
     plt.show()
 
 
