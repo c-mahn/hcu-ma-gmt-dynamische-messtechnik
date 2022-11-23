@@ -178,22 +178,41 @@ if(__name__=='__main__'):
     
     # Dehnung von Messdatei 2 in Zeitbezug von Messdatei 1 umrechnen
     # index*0.5+33=Zeit
-    aramis = {'zeit': aramis_belasten_entlasten_1['zeit'], 'dms_vorn': aramis_belasten_entlasten_1['dms_vorn'], 'dms_hinten': aramis_belasten_entlasten_1['dms_hinten'], 'kraft': aramis_belasten_entlasten_1['kraft']*1000, 'dehnung': np.zeros(len(aramis_belasten_entlasten_1['zeit'])).tolist()}
+    aramis = {'zeit': aramis_belasten_entlasten_1['zeit'], 'dms_vorn': aramis_belasten_entlasten_1['dms_vorn'], 'dms_hinten': aramis_belasten_entlasten_1['dms_hinten'], 'kraft': aramis_belasten_entlasten_1['kraft']*1000, 'kraft_alt': np.zeros(len(aramis_belasten_entlasten_1['zeit'])).tolist(), 'dehnung': np.zeros(len(aramis_belasten_entlasten_1['zeit'])).tolist()}
     for index, i_zeit in enumerate(aramis_belasten_entlasten_1['zeit']):
         index_neu = int(i_zeit*2-66)
         if(index_neu >= 0 and index_neu < len(aramis_belasten_entlasten_2['index'])):
             aramis['dehnung'][index] = aramis_belasten_entlasten_2['dehnung'][index_neu]
+            aramis['kraft_alt'][index] = aramis_belasten_entlasten_2['kraft'][index_neu]
         else:
             aramis['dehnung'][index] = np.nan
+            aramis['kraft_alt'][index] = np.nan
+        
         
     # Dehnung im Verhältnis zur Kraft für Aramis Belasten Entlasten
     analysis.plot_xy([[aramis['kraft'], aramis['dehnung']]],
                      ["Aramis Belasten Entlasten"],
                      "Kraft [N]", "Dehnung [%]", "Aramis Belasten Entlasten")
-    
-    # Dehnung und Kraft zur Zeit für Aramis Belasten Entlasten
-    analysis.plot_xy([[aramis['zeit'], aramis['dehnung']],
-                      [aramis['zeit'], aramis['kraft']]],
-                     ["Dehnung [%]", "Kraft [N]"],
-                     "Zeit [s]", "Dehnung [%] / Kraft [N]", "Aramis Belasten Entlasten")
         
+    # Dehnung im Verhältnis zur Kraft für Aramis Belasten Entlasten
+    analysis.plot_xy([[aramis['kraft'], aramis['dehnung']],
+                      [aramis['kraft_alt'], aramis['dehnung']]],
+                     ["Aramis Belasten Entlasten", "Aramis Belasten Entlasten (nicht korrigiert)"],
+                     "Kraft [N]", "Dehnung [%]", "Aramis Belasten Entlasten")
+    
+    # Dehnung im Verhältnis zur Kraft für Aramis und beide DMS
+    analysis.plot_xy([[aramis['kraft'], aramis['dehnung']],
+                      [aramis['kraft'], aramis['dms_vorn']/1000],
+                      [aramis['kraft'], aramis['dms_hinten']/1000]],
+                     ["Aramis", "DMS Vorn", "DMS Hinten"],
+                     "Kraft [N]", "Dehnung [%]", "Aramis und DMS")
+    
+    # Bestimmung von Steigung und y-Achsenabschnitt
+    kraft_no_nan = []
+    dehnung_no_nan = []
+    for i, e in enumerate(aramis['kraft']):
+        if(not np.isnan(e) and not np.isnan(aramis['dehnung'][i])):
+            kraft_no_nan.append(e/1000)
+            dehnung_no_nan.append(aramis['dehnung'][i])
+    steigung, offset = analysis.linear_regression(kraft_no_nan, dehnung_no_nan)
+    print(f'Steigung: {steigung:.3f} prozentuale Dehnung pro kN\nOffset: {offset:.6f} Prozent')

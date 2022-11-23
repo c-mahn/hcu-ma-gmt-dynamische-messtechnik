@@ -54,6 +54,7 @@ def fill_nan(A):
     '''
     interpolate to fill nan values
     '''
+    A = np.array(A)
     inds = np.arange(A.shape[0])
     good = np.where(np.isfinite(A))
     f = interpolate.interp1d(inds[good], A[good],bounds_error=False)
@@ -115,6 +116,17 @@ def cross_correlation(x_red, y_red):
         lags = np.arange(-maxlags, maxlags + 1)
         c = c[Nx - 1 - maxlags:Nx + maxlags]
         return lags, c
+    
+def linear_regression(x, y):
+    """
+    Diese Funktion macht eine lineare Regression und gibt die Steigung und den
+    y-Achsenabschnitt zurück.
+    """
+    x = np.array(x)
+    y = np.array(y)
+    m = (len(x) * np.sum(x*y) - np.sum(x) * np.sum(y)) / (len(x)*np.sum(x*x) - np.sum(x) ** 2)
+    b = (np.sum(y) - m *np.sum(x)) / len(x)
+    return(m, b)
 
 
 # Classes
