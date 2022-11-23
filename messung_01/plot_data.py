@@ -157,6 +157,7 @@ if(__name__=='__main__'):
                      ["Netzkabel Neben Messleitung (hinten-vorn)"],
                      "Frequenz [Hz]", "Amplitude", "Netzkabel Neben Messleitung")
 
+    """
     # Low-Pass-Filter für Netzkabel Neben Messleitung
     analysis.plot_xy([[netzkabel_neben_messleitung['zeit'], analysis.low_pass_filter(netzkabel_neben_messleitung['dms_vorn']-netzkabel_neben_messleitung['dms_hinten'], int(2400))]],
                       ["Netzkabel Neben Messleitung (hinten-vorn)"],
@@ -167,3 +168,32 @@ if(__name__=='__main__'):
     analysis.plot_xy([[fft_x, fft_y]],
                      ["Netzkabel Neben Messleitung (hinten-vorn)"],
                      "Frequenz [Hz]", "Amplitude", "Netzkabel Neben Messleitung")
+    """
+    
+    # Kraftverlauf bei Arammis Belasten Entlasten 1 Aramis Belasten Entlasten 2
+    analysis.plot_xy([[((aramis_belasten_entlasten_1['zeit'])), aramis_belasten_entlasten_1['kraft']*1000],
+                      [(aramis_belasten_entlasten_2['index']*0.5)+33, aramis_belasten_entlasten_2['kraft']]],
+                      ["Aramis Belasten Entlasten 1", "Aramis Belasten Entlasten 2"],
+                     "Zeit [s]", "Kraft [N]", "Aramis Belasten Entlasten")
+    
+    # Dehnung von Messdatei 2 in Zeitbezug von Messdatei 1 umrechnen
+    # index*0.5+33=Zeit
+    aramis = {'zeit': aramis_belasten_entlasten_1['zeit'], 'dms_vorn': aramis_belasten_entlasten_1['dms_vorn'], 'dms_hinten': aramis_belasten_entlasten_1['dms_hinten'], 'kraft': aramis_belasten_entlasten_1['kraft']*1000, 'dehnung': np.zeros(len(aramis_belasten_entlasten_1['zeit'])).tolist()}
+    for index, i_zeit in enumerate(aramis_belasten_entlasten_1['zeit']):
+        index_neu = int(i_zeit*2-66)
+        if(index_neu >= 0 and index_neu < len(aramis_belasten_entlasten_2['index'])):
+            aramis['dehnung'][index] = aramis_belasten_entlasten_2['dehnung'][index_neu]
+        else:
+            aramis['dehnung'][index] = np.nan
+        
+    # Dehnung im Verhältnis zur Kraft für Aramis Belasten Entlasten
+    analysis.plot_xy([[aramis['kraft'], aramis['dehnung']]],
+                     ["Aramis Belasten Entlasten"],
+                     "Kraft [N]", "Dehnung [%]", "Aramis Belasten Entlasten")
+    
+    # Dehnung und Kraft zur Zeit für Aramis Belasten Entlasten
+    analysis.plot_xy([[aramis['zeit'], aramis['dehnung']],
+                      [aramis['zeit'], aramis['kraft']]],
+                     ["Dehnung [%]", "Kraft [N]"],
+                     "Zeit [s]", "Dehnung [%] / Kraft [N]", "Aramis Belasten Entlasten")
+        
