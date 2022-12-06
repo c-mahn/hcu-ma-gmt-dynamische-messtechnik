@@ -17,7 +17,8 @@ def split_profile(filename, delimiter, split_column):
     for index, line in enumerate(data):
         data[index] = line.strip().split(delimiter)
     for index, line in enumerate(data):
-        print(f"[INFO][{(index+1)*100/len(data):3.0f} %] Writing profile {index+1} of {len(data)}", end="\r")
+        if(index%10000 == 0):
+            print(f'[INFO][{(index+1)*100/len(data):5.1f}%] Writing individual profiles', end="\r")
         with open(os.path.join("data_split", f"{filename.split('.')[0]}_{int(line[split_column]):05d}.csv"), "a") as f:
             for column, entry in enumerate(line):
                 if(column == 0):
@@ -38,7 +39,7 @@ def split_profile(filename, delimiter, split_column):
 if(__name__=='__main__'):
     # Delete old files and create new folder
     print(f'[INFO] Deleting old files in folder "data_split"')
-    shutil.rmtree("data_split")
+    shutil.rmtree("data_split", ignore_errors=True)
     print(f'[INFO] Creating new folder "data_split"')
     os.mkdir("data_split")
     for dataset in settings.datasets:  # Iterate over the datasets
