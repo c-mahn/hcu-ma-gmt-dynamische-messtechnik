@@ -131,3 +131,5 @@ dmypy.json
 
 # Large measurement-data
 messung_02/data_raw
+messung_02/data_split
+messung_02/plots
