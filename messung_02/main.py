@@ -74,3 +74,4 @@ if __name__ == '__main__':
     os.makedirs("data_raw", exist_ok=True)
     __run_script("profiles_split.py")
     __run_script("profiles_analyse.py")
+    print("[INFO] All calculations have ended.")

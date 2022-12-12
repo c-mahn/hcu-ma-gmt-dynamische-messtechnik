@@ -154,7 +154,7 @@ if(__name__=='__main__'):
     for dataset in settings.datasets:
         for profile in range(dataset["profiles"]):
             if(profile % 25 == 0):
-                print(f'[INFO][{profile/dataset["profiles"]*100:5.1f}%] Plotting profiles', end='\r')
+                print(f'[INFO][{profile/dataset["profiles"]*100:5.1f}%] Plotting spectrums', end='\r')
             profile_points = import_profile(f'{dataset["filename"].split(".")[0]}_{profile+1:05d}.csv')
             indices = range(len(profile_points["intensity"]))
             plot_xy([[indices, profile_points["intensity"]],
@@ -164,7 +164,7 @@ if(__name__=='__main__'):
                     name=["Intensity", "X", "Y", "Z"], x="index [1]", y="Koord. [m] / Intensity [1]",
                     size={'x_min': 0, 'x_max': len(indices), 'y_min': -1.5, 'y_max': 1.5}, fixed_size=True,
                     title=f'spectrum_{dataset["filename"].split(".")[0]}_profile{profile+1:05d}', diagram="save")
-        print(f'[INFO][100.0%] Plotting profiles')
+        print(f'[INFO][100.0%] Plotting spectrums')
         plt.clf()
     
     # Getting timeseries of horizontal and vertical movement
@@ -198,16 +198,14 @@ if(__name__=='__main__'):
         # left
         fft_x, fft_y = fast_fourier_transform(timeseries["left"], dataset["sample_rate"])
         plot_xy([[fft_x, fft_y]], x="Frequency [Hz]", y="Amplitude [1]", title=f'fft_{dataset["filename"].split(".")[0]}_left', diagram="save",
-                size={'x_min': 0, 'x_max': 10, 'y_min': 0, 'y_max': 0.1}, fixed_size=True)
+                size={'x_min': 0, 'x_max': 10, 'y_min': 0, 'y_max': 0.05}, fixed_size=True)
         
         # right
         fft_x, fft_y = fast_fourier_transform(timeseries["right"], dataset["sample_rate"])
         plot_xy([[fft_x, fft_y]], x="Frequency [Hz]", y="Amplitude [1]", title=f'fft_{dataset["filename"].split(".")[0]}_right', diagram="save",
-                size={'x_min': 0, 'x_max': 10, 'y_min': 0, 'y_max': 0.1}, fixed_size=True)
+                size={'x_min': 0, 'x_max': 10, 'y_min': 0, 'y_max': 0.05}, fixed_size=True)
         
         # top
         fft_x, fft_y = fast_fourier_transform(timeseries["top"], dataset["sample_rate"])
         plot_xy([[fft_x, fft_y]], x="Frequency [Hz]", y="Amplitude [1]", title=f'fft_{dataset["filename"].split(".")[0]}_top', diagram="save",
-                size={'x_min': 0, 'x_max': 10, 'y_min': 0, 'y_max': 0.1}, fixed_size=True)
-        
-    
+                size={'x_min': 0, 'x_max': 10, 'y_min': 0, 'y_max': 0.05}, fixed_size=True)
