@@ -20,18 +20,22 @@ def import_profile(filename):
     """
     This function imports a profile from a .csv-file.
     """
-    with open(os.path.join("data_split", filename), "r") as f:
-        data = f.readlines()
-    points = {"number": [], "x": [], "y": [], "z": [], "intensity": [], "time": []}
-    for line in data:
-        line = line.split(";")
-        points["number"].append(int(line[1]))
-        points["x"].append(float(line[2]))
-        points["y"].append(float(line[3]))
-        points["z"].append(float(line[4]))
-        points["intensity"].append(float(line[5]))
-        points["time"].append(float(line[6]))
-    return(points)
+    try:
+        with open(os.path.join("data_split", filename), "r") as f:
+            data = f.readlines()
+        points = {"number": [], "x": [], "y": [], "z": [], "intensity": [], "time": []}
+        for line in data:
+            line = line.split(";")
+            points["number"].append(int(line[1]))
+            points["x"].append(float(line[2]))
+            points["y"].append(float(line[3]))
+            points["z"].append(float(line[4]))
+            points["intensity"].append(float(line[5]))
+            points["time"].append(float(line[6]))
+        return(points)
+    except FileNotFoundError:
+        print(f'[ERROR] File "{filename}" not found.')
+        terminate()
         
 
 def plot_werte(datenreihen, name=["Messwerte"], title=None, diagram="show"):
@@ -97,13 +101,30 @@ if(__name__=='__main__'):
     shutil.rmtree("plots", ignore_errors=True)
     print(f'[INFO] Creating new folder "plots"')
     os.mkdir("plots")
+    
+    # Plotting the profiles in 3D with intensity as color
+    offset = 0.002  # Offset for each profile
+    subsample = 20  # Only plot every n-th profile
     for dataset in settings.datasets:
+        plot = plt.figure().add_subplot(projection='3d')
         for profile in range(dataset["profiles"]):
-            print(f'[INFO] Importing profile {profile+1} from {dataset["filename"]}')
-            profile_data = import_profile(f'{dataset["filename"].split(".")[0]}_{profile+1:05d}.csv')
-            plot_xy([[profile_data["y"], profile_data["x"]]],
-                    x="Y", y="X", diagram="save",
-                    name=[f'Profil {profile+1:05d}'],
-                    title=f'{dataset["filename"].split(".")[0]}_Profil_{profile+1:05d}')
-            plot_werte([profile_data["x"], profile_data["y"], profile_data["z"], profile_data["intensity"]],
-                       name=["X", "Y", "Z", "Intensity"], title=f'werte_{dataset["filename"].split(".")[0]}_Profil_{profile+1:05d}', diagram="save")
+            if(profile % subsample == 0):
+                print(f'[INFO][{profile/dataset["profiles"]*100:5.1f}%] Plotting profiles', end='\r')
+                # Plot in 3D with an offset for each profile
+                profile_points = import_profile(f'{dataset["filename"].split(".")[0]}_{profile+1:05d}.csv')
+                plot.scatter(np.array(profile_points["x"])+(profile*offset),
+                                profile_points["y"],
+                                profile_points["z"],
+                                c=profile_points["intensity"],
+                                cmap='viridis',
+                                linewidth=0.5)
+        print(f'[INFO][100.0%] Plotting profiles')
+        plot.set_xlabel('X')
+        plot.set_ylabel('Y')
+        plot.set_zlabel('Z')
+        plot.set_title('3D-Plot')
+        plt.show()   
+        plt.clf()
+    
+    # Plotting the profiles in 2D with intensity as color
+    
