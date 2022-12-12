@@ -39,8 +39,8 @@ verbose = True  # Shows more debugging information
 # change the computed input or output.
 
 # These are the datasets that will be used for the computation.
-datasets = [{"filename": "rps25_synch.txt","delimiter": ";","split_column": 0, "profiles": 1143},
-            {"filename": "rps50_synch.txt","delimiter": ";","split_column": 0, "profiles": 2124}]
+datasets = [{"filename": "rps25_synch.txt","delimiter": ";","split_column": 0, "profiles": 1143, "left": [2400, 2600], "right": [7900, 8100], "top": [4900, 5100], "sample_rate": 25},
+            {"filename": "rps50_synch.txt","delimiter": ";","split_column": 0, "profiles": 2124, "left": [4400, 4600], "right": [16000, 16200], "top": [9900, 10100], "sample_rate": 50}]
 
 # Functions
 # -----------------------------------------------------------------------------
