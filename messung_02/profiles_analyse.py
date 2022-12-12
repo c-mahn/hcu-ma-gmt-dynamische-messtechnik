@@ -14,6 +14,7 @@ import numpy as np
 import shutil
 from scipy.fft import fft, fftfreq
 from scipy import signal
+from profiles_split import terminate
 
 # -----------------------------------------------------------------------------
 # Functions
@@ -36,7 +37,7 @@ def import_profile(filename):
             points["time"].append(float(line[6]))
         return(points)
     except FileNotFoundError:
-        print(f'[ERROR] File "{filename}" not found.')
+        print(f'[ERROR] File "{filename}" not found in the folder "data_split". Execute the script "profiles_split.py" first.')
         terminate()
 
 
@@ -97,14 +98,6 @@ def plot_xy(datenreihen, name=["Messwerte"], x="X", y="Y", title=None, diagram="
         plt.show()
     elif(diagram == "save"):
         plt.savefig(os.path.join("plots", title + ".png"))
-
-
-def terminate():
-    """
-    This function terminates the program.
-    """
-    print("[INFO] The program has been terminated.")
-    exit()
 
 
 # -----------------------------------------------------------------------------

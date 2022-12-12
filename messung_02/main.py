@@ -72,5 +72,5 @@ def __run_script(script_name):
 
 if __name__ == '__main__':
     os.makedirs("data_raw", exist_ok=True)
-    # __run_script("profiles_split.py")
+    __run_script("profiles_split.py")
     __run_script("profiles_analyse.py")
