@@ -1,22 +1,25 @@
 # This script is used to convert the time series data into standardised .csv-files.
 
+# Authors:
+# Christopher Mahn
+# Silas Teske
+# Joshua Wolf
+# Lukas Schulz
+# Maria Riegel
+
+# ##############################################################################
+
 # Import of libraries
+# -----------------------------------------------------------------------------
+
+from main import terminate
 import os
 import main as settings
 import shutil
 
 
-# -----------------------------------------------------------------------------
-
 # Functions
-
-def terminate():
-    """
-    This function terminates the program.
-    """
-    print("[INFO] The program has been terminated.")
-    exit()
-
+# -----------------------------------------------------------------------------
 
 def split_profile(filename, delimiter, split_column):
     print(f'[INFO] Reading file {filename}')
@@ -41,13 +44,13 @@ def split_profile(filename, delimiter, split_column):
         terminate()
 
 
-# -----------------------------------------------------------------------------
-
 # Classes
 
 # -----------------------------------------------------------------------------
 
-# Beginning of main program
+
+# Beginning of the program
+# -----------------------------------------------------------------------------
 
 if(__name__=='__main__'):
     # Delete old files and create new folder

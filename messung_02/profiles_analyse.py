@@ -1,20 +1,22 @@
-# This script is used to plot the data in different ways.
+# This script is used to analyse and plot the data in different ways.
 
 # Authors:
 # Christopher Mahn
 # Silas Teske
 # Joshua Wolf
+# Lukas Schulz
 # Maria Riegel
 
+# ##############################################################################
+
 # Import of libraries
+import main
 import os
-import main as settings
 import matplotlib.pyplot as plt
 import numpy as np
 import shutil
 from scipy.fft import fft, fftfreq
-from scipy import signal
-from profiles_split import terminate
+# from scipy import signal
 
 # -----------------------------------------------------------------------------
 # Functions
@@ -38,7 +40,7 @@ def import_profile(filename):
         return(points)
     except FileNotFoundError:
         print(f'[ERROR] File "{filename}" not found in the folder "data_split". Execute the script "profiles_split.py" first.')
-        terminate()
+        main.terminate()
 
 
 def fast_fourier_transform(datenreihe, sample_rate):
@@ -116,7 +118,7 @@ if(__name__=='__main__'):
     # Plotting the profiles in 3D with intensity as color (X, Y, Z)
     offset = 0.002  # Offset for each profile
     subsample = 20  # Only plot every n-th profile
-    for dataset in settings.datasets:
+    for dataset in main.datasets:
         plot = plt.figure().add_subplot(projection='3d')
         for profile in range(dataset["profiles"]):
             if(profile % subsample == 0):
@@ -140,7 +142,7 @@ if(__name__=='__main__'):
     '''
     
     # Plotting all profiles in 2D (Y, Z)
-    for dataset in settings.datasets:
+    for dataset in main.datasets:
         for profile in range(dataset["profiles"]):
             if(profile % 25 == 0):
                 print(f'[INFO][{profile/dataset["profiles"]*100:5.1f}%] Plotting profiles', end='\r')
@@ -152,7 +154,7 @@ if(__name__=='__main__'):
         plt.clf()
         
     # Plotting all profiles in 2D as Spectrum (value, index)
-    for dataset in settings.datasets:
+    for dataset in main.datasets:
         for profile in range(dataset["profiles"]):
             if(profile % 25 == 0):
                 print(f'[INFO][{profile/dataset["profiles"]*100:5.1f}%] Plotting spectrums', end='\r')
@@ -169,7 +171,7 @@ if(__name__=='__main__'):
         plt.clf()
     
     # Getting timeseries of horizontal and vertical movement
-    for dataset in settings.datasets:
+    for dataset in main.datasets:
         timeseries = {"left": [], "right": [], "top": []}
         for profile in range(dataset["profiles"]):
             if(profile % 25 == 0):
