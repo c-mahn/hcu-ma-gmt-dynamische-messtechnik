@@ -111,7 +111,7 @@ if(__name__=='__main__'):
     shutil.rmtree("plots", ignore_errors=True)
     print(f'[INFO] Creating new folder "plots"')
     os.mkdir("plots")
-    
+
     '''
     # Plotting the profiles in 3D with intensity as color (X, Y, Z)
     offset = 0.002  # Offset for each profile
@@ -126,7 +126,6 @@ if(__name__=='__main__'):
                 plot.scatter(np.array(profile_points["x"])+(profile*offset),
                                 profile_points["y"],
                                 profile_points["z"],
-                                c=profile_points["intensity"],
                                 cmap='viridis',
                                 linewidth=0.5)
         print(f'[INFO][100.0%] Plotting profiles')
