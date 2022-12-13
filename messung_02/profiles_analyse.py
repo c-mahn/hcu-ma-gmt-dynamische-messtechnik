@@ -134,6 +134,8 @@ if(__name__=='__main__'):
         plot.set_ylabel('Y')
         plot.set_zlabel('Z')
         plot.set_title('3D-Plot')
+        plot.set_ylim3d(-1.5, 1.5)
+        plot.set_zlim3d(-2.0, 1.0)
         plt.show()   
         plt.clf()
     '''
