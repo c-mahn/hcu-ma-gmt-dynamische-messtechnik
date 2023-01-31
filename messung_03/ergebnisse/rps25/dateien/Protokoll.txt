@@ -1,0 +1,75 @@
+Interessante Punkte: [1675, 2400, 5600, 6800, 8940, 8050] 
+
+Starte Analyse für Punkt Nummer 1675 
+
+Parameter der Trendgeraden: y = 1.7402134694452935e-05*x+-0.5495072242984683
+Varianzen der Parameter: 1.8867201504769556e-05
+
+STFT Ergebnisse in Datei gespeichert. Siehe Dateien
+
+Fourier-Approximation für Punkt Nummer 1675
+Anzahl der Parameter: 321
+Betrachtung der Kurve von Index 300 bis Index 630
+
+Ergebnisse der Fourier Approximation in Datei gespeichert. Siehe Dateien
+Starte Analyse für Punkt Nummer 2400 
+
+Parameter der Trendgeraden: y = 1.1748195195289006e-05*x+-0.09699456355689345
+Varianzen der Parameter: 6.208398152507673e-06
+
+STFT Ergebnisse in Datei gespeichert. Siehe Dateien
+
+Fourier-Approximation für Punkt Nummer 2400
+Anzahl der Parameter: 321
+Betrachtung der Kurve von Index 300 bis Index 630
+
+Ergebnisse der Fourier Approximation in Datei gespeichert. Siehe Dateien
+Starte Analyse für Punkt Nummer 5600 
+
+Parameter der Trendgeraden: y = -0.001206830379172548*x+0.499340456999179
+Varianzen der Parameter: 4.065997007091303e-05
+
+STFT Ergebnisse in Datei gespeichert. Siehe Dateien
+
+Fourier-Approximation für Punkt Nummer 5600
+Anzahl der Parameter: 321
+Betrachtung der Kurve von Index 300 bis Index 630
+
+Ergebnisse der Fourier Approximation in Datei gespeichert. Siehe Dateien
+Starte Analyse für Punkt Nummer 6800 
+
+Parameter der Trendgeraden: y = -0.0011307900251853744*x+0.2790800183562292
+Varianzen der Parameter: 2.377275164208397e-05
+
+STFT Ergebnisse in Datei gespeichert. Siehe Dateien
+
+Fourier-Approximation für Punkt Nummer 6800
+Anzahl der Parameter: 321
+Betrachtung der Kurve von Index 300 bis Index 630
+
+Ergebnisse der Fourier Approximation in Datei gespeichert. Siehe Dateien
+Starte Analyse für Punkt Nummer 8940 
+
+Parameter der Trendgeraden: y = 0.0031137720196675674*x+-0.6694262099710463
+Varianzen der Parameter: 3.8641570895785376e-05
+
+STFT Ergebnisse in Datei gespeichert. Siehe Dateien
+
+Fourier-Approximation für Punkt Nummer 8940
+Anzahl der Parameter: 321
+Betrachtung der Kurve von Index 300 bis Index 630
+
+Ergebnisse der Fourier Approximation in Datei gespeichert. Siehe Dateien
+Starte Analyse für Punkt Nummer 8050 
+
+Parameter der Trendgeraden: y = 0.0006874000305205786*x+-0.15380286597083337
+Varianzen der Parameter: 1.0871037251687117e-05
+
+STFT Ergebnisse in Datei gespeichert. Siehe Dateien
+
+Fourier-Approximation für Punkt Nummer 8050
+Anzahl der Parameter: 321
+Betrachtung der Kurve von Index 300 bis Index 630
+
+Ergebnisse der Fourier Approximation in Datei gespeichert. Siehe Dateien
+***END***

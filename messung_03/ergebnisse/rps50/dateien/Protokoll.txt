@@ -1,0 +1,75 @@
+Interessante Punkte: [3375, 4780, 11250, 13800, 16000, 17650] 
+
+Starte Analyse für Punkt Nummer 3375 
+
+Parameter der Trendgeraden: y = -5.116633341249111e-05*x+-0.5485511944650898
+Varianzen der Parameter: 1.2898435672825413e-05
+
+STFT Ergebnisse in Datei gespeichert. Siehe Dateien
+
+Fourier-Approximation für Punkt Nummer 3375
+Anzahl der Parameter: 1101
+Betrachtung der Kurve von Index 300 bis Index 1700
+
+Ergebnisse der Fourier Approximation in Datei gespeichert. Siehe Dateien
+Starte Analyse für Punkt Nummer 4780 
+
+Parameter der Trendgeraden: y = 2.6741327780210492e-06*x+-0.09472184917089572
+Varianzen der Parameter: 3.6570836289823045e-06
+
+STFT Ergebnisse in Datei gespeichert. Siehe Dateien
+
+Fourier-Approximation für Punkt Nummer 4780
+Anzahl der Parameter: 1101
+Betrachtung der Kurve von Index 300 bis Index 1700
+
+Ergebnisse der Fourier Approximation in Datei gespeichert. Siehe Dateien
+Starte Analyse für Punkt Nummer 11250 
+
+Parameter der Trendgeraden: y = -0.0024994737159623162*x+0.6000178879248432
+Varianzen der Parameter: 0.00037830339105052505
+
+STFT Ergebnisse in Datei gespeichert. Siehe Dateien
+
+Fourier-Approximation für Punkt Nummer 11250
+Anzahl der Parameter: 1101
+Betrachtung der Kurve von Index 300 bis Index 1700
+
+Ergebnisse der Fourier Approximation in Datei gespeichert. Siehe Dateien
+Starte Analyse für Punkt Nummer 13800 
+
+Parameter der Trendgeraden: y = -0.0009482623592757652*x+0.2875008298025885
+Varianzen der Parameter: 1.5856800825243598e-05
+
+STFT Ergebnisse in Datei gespeichert. Siehe Dateien
+
+Fourier-Approximation für Punkt Nummer 13800
+Anzahl der Parameter: 1101
+Betrachtung der Kurve von Index 300 bis Index 1700
+
+Ergebnisse der Fourier Approximation in Datei gespeichert. Siehe Dateien
+Starte Analyse für Punkt Nummer 16000 
+
+Parameter der Trendgeraden: y = 0.0005246205426963675*x+-0.14634429369906377
+Varianzen der Parameter: 6.344141525604585e-06
+
+STFT Ergebnisse in Datei gespeichert. Siehe Dateien
+
+Fourier-Approximation für Punkt Nummer 16000
+Anzahl der Parameter: 1101
+Betrachtung der Kurve von Index 300 bis Index 1700
+
+Ergebnisse der Fourier Approximation in Datei gespeichert. Siehe Dateien
+Starte Analyse für Punkt Nummer 17650 
+
+Parameter der Trendgeraden: y = 0.002743792304891161*x+-0.6750377549301746
+Varianzen der Parameter: 2.3593075379830185e-05
+
+STFT Ergebnisse in Datei gespeichert. Siehe Dateien
+
+Fourier-Approximation für Punkt Nummer 17650
+Anzahl der Parameter: 1101
+Betrachtung der Kurve von Index 300 bis Index 1700
+
+Ergebnisse der Fourier Approximation in Datei gespeichert. Siehe Dateien
+***END***
